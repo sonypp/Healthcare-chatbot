@@ -9,6 +9,13 @@
 ```bash
 sudo apt-get install libopenmpi-dev
 ```
+
+- python-venv
+
+```bash
+sudo apt install python3-venv -y
+```
+
 ### STEPS:
 
 Clone the repository
@@ -17,14 +24,14 @@ Clone the repository
 Project repo: https://github.com/sonypp/Healthcare-chatbot.git
 ```
 
-### STEP 01- Create a conda environment after opening the repository
+### STEP 01- Create a venv environment after opening the repository
 
 ```bash
-conda create -n mchatbot python=3.8 -y
+venv -m venv .venv
 ```
 
 ```bash
-conda activate mchatbot
+source ./.venv/bin.activate
 ```
 
 ### STEP 02- install the requirements
@@ -54,7 +61,11 @@ https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGML/tree/main
 ```
 
 ```bash
-# run the following command
+# If you want to run with small data:
+python store_index.py
+
+# If you want to run with larger data (spend more time):
+mpirun -n <number_of_max_cpu_cores> python crawl_data.py
 python store_index.py
 ```
 
@@ -79,6 +90,7 @@ open up localhost:8080
 - MPI4PY
 - BeautifulSoup
 - Requests
+- GooglleTrans
 
 
 # Healthcare-chatbot
