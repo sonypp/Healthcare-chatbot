@@ -7,4 +7,7 @@ langchain-community
 flask
 pypdf
 python-dotenv
+mpi4py
+requests
+bs4
 -e .

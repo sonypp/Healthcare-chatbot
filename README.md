@@ -1,6 +1,14 @@
 # End-to-end-Medical-Chatbot-using-Llama2
 
 # How to run?
+
+## Prerequirements
+
+- libopenmpi-dev
+
+```bash
+sudo apt-get install libopenmpi-dev
+```
 ### STEPS:
 
 Clone the repository
@@ -68,6 +76,9 @@ open up localhost:8080
 - Flask
 - Meta Llama2
 - Pinecone
+- MPI4PY
+- BeautifulSoup
+- Requests
 
 
 # Healthcare-chatbot
