@@ -49,13 +49,15 @@ for link in link_extensions:
         # Connect to the website
         link = "https://www.vinmec.com" + link
         resp = requests.get(link)
+        while resp.status_code != 200:
+            resp = requests.get(link)
         soup = BeautifulSoup(resp.text, 'html.parser')
         content = soup.find('div', class_='content')
 
         # Write the content to the pdf file
         for element in content.find_all('p'):
             text = element.get_text()
-            if text == '\xa0':
+            if 'Xem thêm' in text:
                 break
             pdf.write(8, translator.translate(text, src='vi', dest='en').text)
             pdf.ln()
