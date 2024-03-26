@@ -7,9 +7,12 @@ from langchain.llms import CTransformers
 from langchain.chains import RetrievalQA
 from dotenv import load_dotenv
 from src.prompt import *
+from googletrans import Translator
 import os
 
 app = Flask(__name__)
+
+translator = Translator()
 
 load_dotenv()
 
@@ -57,11 +60,12 @@ def index():
 @app.route("/get", methods=["GET", "POST"])
 def chat():
     msg = request.form["msg"]
-    input = msg
-    print(input)
+    input = translator.translate(msg, dest='en')
+    src = input.src
+    input = input.text
     result=qa({"query": input})
-    print("Response : ", result["result"])
-    return str(result["result"])
+    
+    return str(translator.translate(result["result"], src='en', dest=src).text)
 
 
 
